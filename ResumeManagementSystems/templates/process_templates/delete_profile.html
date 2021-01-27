@@ -1,0 +1,36 @@
+{% extends 'common.html' %}
+
+{% block content %}
+    {% if request.session.contact %}
+        <form action="{% url 'delete_profile_page' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table align="center" border="0" bgcolor="#ffffe0" width="1000">
+        <tr>
+            <th>
+                <h1 style="text-align: center;color: mediumpurple;font-family: 'Century Gothic'">Are you sure you want to delete?</h1>
+            </th>
+        </tr>
+        <tr>
+            <th style="font-size: 30px">
+                {{ request.session.name }}
+            </th>
+        </tr>
+        {% for x in data %}
+            <tr>
+                <th>
+                    <img src="{{ x.photo.url }}" width="150" height="120">
+                </th>
+            </tr>
+        {% endfor %}
+        <tr>
+            <th style="text-align: center">
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </th>
+        </tr>
+    </table>
+    </form>
+    {% else %}
+        <h1 style="color: rebeccapurple;font-size: 35px;font-family: Algerian"> Please Do Login First</h1>
+        <h4 style="font-family: Arial;font-size: 25px"> Without Login You cannot access this page....</h4>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'common.html' %}
+
+{% block content %}
+    {% for x in messages %}
+        <h1>{{ x }}</h1>
+    {% endfor %}
+
+    <a href="{% url 'login' %}" >
+        <h1>Login from Here</h1>
+    </a>
+{% endblock %}

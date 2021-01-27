@@ -1,0 +1,45 @@
+{% extends "common.html" %}
+
+{% block content %}
+    {% load static %}
+
+    {% if request.session.contact %}
+        <h1>You are Already Registered</h1>
+    {% else %}
+    <form action="{% url 'user_registration' %}" method="post">
+    {% csrf_token %}
+        <table align="center" border="0" width="700">
+            <tr>
+                <th colspan="2" style="background-color: lightpink;color: deeppink;font-family: Algerian;text-align: center;font-size: 35px">Registration Page</th>
+            </tr>
+
+            <tr>
+                <th>{{ form.name.label }}</th>
+                <th>{{ form.name }}</th>
+            </tr>
+            <tr>
+                <th>{{ form.contact.label }}</th>
+                <th>{{ form.contact }}</th>
+            </tr>
+            <tr>
+                <th>{{ form.email.label }}</th>
+                <th>{{ form.email }}</th>
+            </tr>
+            <tr>
+                <th>{{ form.password.label }}</th>
+                <th>{{ form.password }}</th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="hidden" name="otp" value="0" required="" id="id_otp">
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align: center">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </th>
+            </tr>
+        </table>
+    </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'common.html' %}
+
+{% block content %}
+    {% load static %}
+    <table align="center" border="0" width="1000">
+        <tr>
+            <th>
+                <img src="{% static 'images/contct.png' %}" width="1000" height="300">
+            </th>
+        </tr>
+
+        <tr>
+            <th>
+                <img src="{% static 'images/phone.png' %}" width="25px"> : +91-9100000000
+            </th>
+        </tr>
+        
+        <tr>
+            <th>
+                <img src="{% static 'images/email.png' %}" width="25px"> : rms@gmail.com
+            </th>
+        </tr>
+    </table>
+{% endblock %}

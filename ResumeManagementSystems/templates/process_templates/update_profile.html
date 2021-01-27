@@ -1,0 +1,57 @@
+{% extends 'common.html' %}
+
+{% block content %}
+    {% if request.session.contact %}
+        <form action="{% url 'updated_profile_page' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table align="center" border="0" width="500" height="400">
+        <tr>
+            <th colspan="2" style="text-align: center;font-size: 40px;font-family: Arial;background-color: lightsteelblue;color: darkblue">
+                Update Profile
+            </th>
+        </tr>
+
+        <tr>
+            <th>{{ form.person.label }}</th>
+            <th>
+                <select name="p1">
+                {% for x in rdata %}
+                   <option>{{ x.rno }}</option>
+                {% endfor %}
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th>{{ form.education.label }}</th>
+            <th>{{ form.education }}</th>
+        </tr>
+        <tr>
+            <th>{{ form.photo.label }}</th>
+            <th>{{ form.photo }}</th>
+        </tr>
+        <tr>
+            <th>{{ form.resume.label }}</th>
+            <th>{{ form.resume }}</th>
+        </tr>
+            <tr>
+                <th>{{ form.itype.label }}</th>
+                <th>
+                    <select name="i1" multiple>
+                        {% for x in idata %}
+                            <option value="{{ x.ino }}">{{ x.type }}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+            </tr>
+        <tr>
+            <th colspan="2" style="text-align: center">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </th>
+        </tr>
+    </table>
+    </form>
+    {% else %}
+        <h1 style="color: brown;font-size: 35px;font-family: Algerian"> Please Do Login First</h1>
+        <h4 style="font-family: Arial;font-size: 25px"> Without Login You cannot access this page....</h4>
+    {% endif %}
+{% endblock %}

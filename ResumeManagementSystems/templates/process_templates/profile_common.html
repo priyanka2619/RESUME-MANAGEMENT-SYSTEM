@@ -1,0 +1,78 @@
+{% extends 'common.html' %}
+
+{% block content %}
+    {% load static %}
+    <style>
+    .head
+    {
+        color: #570b15;
+        font-family: "Book Antiqua";
+    }
+    </style>
+
+    {% if request.session.contact %}
+        <div class="card" style="width: 62.5rem;">
+          <div class="card-body">
+            <h5 class="card-title">Welcome To Profile Page</h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+            <p class="card-text"> Mr/Miss : {{ request.session.name }}</p>
+          </div>
+        </div>
+{#        <h1 class="head"> Welcome To Profile Page</h1>#}
+{#        <h2 class="head"> Mr/Miss : {{ request.session.name }}</h2>#}
+
+        {% if status %}
+            {% for x in rdata %}
+                <table align="center" border="2">
+                    <style>
+                        #view{
+                            text-align: center;
+                            background-color: lightgray;
+                            color: black;
+                            font-size: 35px;
+                        }
+                    </style>
+                    <tr>
+                        <th id="view" colspan="6">View All Details</th>
+                    </tr>
+                    <tr style="text-align: center;background-color: lightyellow;color: green">
+                        <th>Name</th>
+                        <th>Contact no</th>
+                        <th>Email-id</th>
+                        <th>Education</th>
+                        <th>Photo</th>
+                        <th>Resume</th>
+                    </tr>
+                    <tr>
+                        <th>{{ x.name }}</th>
+                        <th>{{ x.contact }}</th>
+                        <th>{{ x.email }}</th>
+                        {% for y in pdata %}
+                            <th>{{ y.education }}</th>
+                            <th><img src="{{ y.photo.url }}" width="80px" height="80px"></th>
+                            <th>{{ y.resume }}</th>
+                        {% endfor %}
+                    </tr>
+                </table>
+            {% endfor %}
+        {% else %}
+            {% block profile %}
+
+            {% endblock %}
+
+        {% endif %}
+
+    {% else %}
+        <h1 style="color: red;font-size: 35px;font-family: Algerian"> Please Do Login First</h1>
+        <h4 style="font-family: Arial;font-size: 25px"> Without Login You cannot access this page....</h4>
+    {% endif %}
+
+{% endblock %}
+
+{% if messages %}
+    {% for x in messages %}
+        <tr>
+            <th>{{ x }}</th>
+        </tr>
+    {% endfor %}
+{% endif %}
